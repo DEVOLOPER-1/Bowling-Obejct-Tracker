@@ -12,7 +12,7 @@ parser.add_argument("--output_video", type=str, required=True)
 args = parser.parse_args()
 #################################################
 
-model = YOLO("../models/best_yolo26n.pt")
+model = YOLO("./models/best_yolo26n.pt")
 CLASSES = {0: "bowling-ball", 1: "bowling-pins", 2: "sweep board", 3: "car"}
 PIN_CLASS = 1
 CAR_CLASS = 3
