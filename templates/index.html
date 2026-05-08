@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bowling AI Referee</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Bowling AI Referee 🎳</h1>
+        <p>Upload race footage to calculate the exact pin fall count using YOLO.</p>
+      </div>
+
+      <div class="card">
+        <form id="run-form">
+          <div class="form-group">
+            <label>Player A Video</label>
+            <input type="file" name="player_a" accept="video/*" required>
+          </div>
+
+          <div class="form-group">
+            <label>Player B Video</label>
+            <input type="file" name="player_b" accept="video/*" required>
+          </div>
+
+          <div class="form-group">
+            <label>AI Pipeline Algorithm</label>
+            <select name="pipeline" id="pipeline-select">
+              {% for p in pipelines %}
+              <option value="{{p}}">{{p}}</option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <button type="submit" id="submit-btn">Run AI Analysis</button>
+        </form>
+      </div>
+
+      <div id="jobs"></div>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+  </body>
+</html>
