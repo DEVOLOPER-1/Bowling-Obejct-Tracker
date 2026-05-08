@@ -147,7 +147,7 @@ tracking_pipeline/
 ├── pipelines/
 │   └── youssef_yolo.py          # Main detection & tracking pipeline
 ├── models/
-│   └── best_yolo26n.pt          # Fine-tuned YOLOv8 model weights
+│   └── best_yolo26n.pt          # Fine-tuned YOLOv26 nano model weights
 ├── input_dataset/
 │   └── [Video files]            # Input videos for processing
 ├── outputs/
