@@ -165,7 +165,7 @@ final_frame = np.zeros((frame_height, frame_width, 3), dtype=np.uint8)
 final_text_lines = [
     "Run Complete!",
     f"Total Time: {elapsed:.1f}s",
-    f"Pins Knocked Down: {min(len(fallen_registry), current_frame_fallen)}",
+    f"Pins Knocked Down: {max(len(fallen_registry), current_frame_fallen)}",
     f"Car Path Length: {len(car_path)} points",
 ]
 y0 = frame_height // 3
@@ -188,7 +188,7 @@ out.release()
 cv2.destroyAllWindows()
 
 
-final_pins = min(len(fallen_registry), current_frame_fallen)
+final_pins = max(len(fallen_registry), current_frame_fallen)
 
 output_dict = {
     "pins": final_pins,
