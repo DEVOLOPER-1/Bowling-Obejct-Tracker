@@ -1,0 +1,9 @@
+body { font-family: Arial, sans-serif; background: #f7f7f7; color: #222; }
+.container { max-width: 900px; margin: 40px auto; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0 4px 14px rgba(0,0,0,0.05); }
+label { display: block; margin: 12px 0; }
+button { padding: 8px 12px; border-radius: 6px; }
+.status { font-weight: 600; margin-bottom: 8px; }
+.players { display: flex; gap: 20px; }
+.player { background: #fafafa; padding: 12px; border-radius: 6px; }
+.winner { font-size: 1.1em; font-weight:700; color: #0a7; margin-bottom: 8px; }
+

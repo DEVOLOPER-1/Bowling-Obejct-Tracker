@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bowling Pipeline Runner</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Bowling Pipeline Runner</h1>
+
+      <form id="run-form">
+        <label>Player A video: <input type="file" name="player_a" required></label>
+        <label>Player B video: <input type="file" name="player_b" required></label>
+
+        <label>Choose pipeline:
+          <select name="pipeline" id="pipeline-select">
+            {% for p in pipelines %}
+            <option value="{{p}}">{{p}}</option>
+            {% endfor %}
+          </select>
+        </label>
+
+        <button type="submit">Run</button>
+      </form>
+
+      <div id="jobs"></div>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+  </body>
+</html>
+

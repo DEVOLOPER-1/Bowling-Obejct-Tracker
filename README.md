@@ -114,6 +114,28 @@ python youssef_yolo.py
 
 ---
 
+## 🖥️ Web UI: Run pipelines from a browser
+
+A small Flask server is included to upload two player videos, run selected pipelines on both videos, and download annotated outputs.
+
+Quick start:
+
+1. Install dependencies (see Installation above).
+2. Start the server:
+```bash
+python server.py
+```
+3. Open http://localhost:5000 in your browser.
+
+The web UI accepts two uploaded videos (Player A and Player B) and a pipeline choice. After processing, the server returns per-player pin counts and links to the annotated output videos located in `outputs/`.
+
+Notes:
+- The server discovers pipeline modules under `pipelines/` and expects each pipeline module to expose a `run_pipeline(input_path, output_path)` function.
+- Uploaded files are temporarily stored in `uploads/` and outputs are written to `outputs/`.
+
+
+---
+
 ## ⚙️ Configuration
 
 Edit `pipelines/youssef_yolo.py` to customize behavior:

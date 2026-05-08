@@ -2,6 +2,14 @@ import cv2
 import numpy as np
 import math
 from ultralytics import YOLO
+import argparse
+
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--input_video", type=str, default="../input_dataset/IMG_3794.mov")
+args = parser.parse_args()
+
+
 
 model = YOLO("../models/best_yolo26n.pt")
 CLASSES = {0: 'bowling-ball', 1: 'bowling-pins', 2: 'sweep board', 3: 'car'}
@@ -15,13 +23,13 @@ SHOW_VIDEO = False
 FALL_CONFIRM_FRAMES = 5
 MATCH_RADIUS = 30
 
-cap = cv2.VideoCapture("../input_dataset/IMG_3794.mov")
+cap = cv2.VideoCapture(f"{args.input_video}")
 fps = cap.get(cv2.CAP_PROP_FPS) or 30
 frame_width = int(cap.get(3))
 frame_height = int(cap.get(4))
 
 fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-out = cv2.VideoWriter('../outputs/youssef_yolo_output.mp4', fourcc, fps, (frame_width, frame_height))
+out = cv2.VideoWriter(f'../outputs/{args.input_video}_youssef_yolo_output.mp4', fourcc, fps, (frame_width, frame_height))
 
 pin_states = {}
 fallen_registry = []
@@ -133,7 +141,7 @@ final_frame = np.zeros((frame_height, frame_width, 3), dtype=np.uint8)
 final_text_lines = [
     "Run Complete!",
     f"Total Time: {elapsed:.1f}s",
-    f"Pins Knocked Down: {max(len(fallen_registry), current_frame_fallen)}",
+    f"Pins Knocked Down: {min(len(fallen_registry), current_frame_fallen)}",
     f"Car Path Length: {len(car_path)} points"
 ]
 y0 = frame_height // 3
@@ -148,5 +156,10 @@ cap.release()
 out.release()
 cv2.destroyAllWindows()
 
-print(f"Final: {max(len(fallen_registry), current_frame_fallen)} pins in {elapsed:.1f}s")
-print("Annotated video saved as 'annotated_output.mp4'")
+def main():
+    return {
+        'pins': max(len(fallen_registry), current_frame_fallen),
+        'output': f'../outputs/{args.input_video}_youssef_yolo_output.mp4',
+        'elapsed_s': float(elapsed),
+        'car_path_len': len(car_path),
+    }
